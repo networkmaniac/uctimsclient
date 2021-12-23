@@ -42,6 +42,12 @@ int initialiseAudioTxPipeline(Call *ca);
 
 int initialiseAudioRxPipeline(Call *ca);
 
+int initialiseIptvVideoPipeline(Call *ca);
+
+int destroyRingingPipeline(Call *ca);
+
+int destroyBackgroundVideoPipeline();
+
 int destroyVideoTxPipeline(Call *call);
 
 int destroyVideoRxPipeline(Call *call);
@@ -49,6 +55,8 @@ int destroyVideoRxPipeline(Call *call);
 int destroyAudioTxPipeline(Call *ca);
 
 int destroyAudioRxPipeline(Call *ca);
+
+int destroyIptvVideoPipeline();
 
 /** @} */
 

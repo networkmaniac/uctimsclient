@@ -169,6 +169,12 @@ void ims_process_incoming_reinvite (eXosip_event_t *je);
  */
 void ims_process_302 (eXosip_event_t *je);
 
+/**
+ * Processes an NOTIFY
+ * 
+ * @param je - a pointer to the NOTIFY event
+ */
+void ims_process_notify(eXosip_event_t *je);
 
 /** @} */
 
