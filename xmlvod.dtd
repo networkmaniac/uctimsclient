@@ -1,0 +1,325 @@
+<!-- DTD for VoD listings
+
+This is based largely on the xmltv stuff with added elements for 
+extra information we may need and with some of the non relevant stuff
+stripped out.
+-->
+
+<!-- Root element
+
+The root element is vod and may contain with in its tags series and video.
+
+The attribute stuff is taken from xmltv DTD:
+
+Date should be the date when the listings were originally produced in
+whatever format; if you're converting data from another source, then
+use the date given by that source.  The date when the conversion
+itself was done is not important.
+
+To indicate the source of the listings, there are three attributes you
+can define:
+
+'source-info-url' is a URL describing the data source in
+some human-readable form.  So if you are getting your listings from
+SAT.1, you might set this to the URL of a page explaining how to
+subscribe to their feed.  If you are getting them from a website, the
+URL might be the index of the site or at least of the TV listings
+section.
+
+'source-info-name' is the link text for that URL; it should
+generally be the human-readable name of your listings supplier.
+Sometimes the link text might be printed without the link itself, in
+hardcopy listings for example.
+
+'source-data-url' is where the actual data is grabbed from.  This
+should link directly to the machine-readable data files if possible,
+but it's not rigorously defined what 'actual data' means.  If you are
+parsing the data from human-readable pages, then it's more appropriate
+to link to them with the source-info stuff and omit this attribute.
+
+To publicize your wonderful program which generated this file, you can
+use 'generator-info-name' (preferably in the form 'progname/version')
+and 'generator-info-url' (a link to more info about the program).
+-->
+<!ELEMENT vod (series*, video*)>
+<!ATTLIST vod date   CDATA #IMPLIED
+             source-info-url     CDATA #IMPLIED
+             source-info-name    CDATA #IMPLIED
+             source-data-url     CDATA #IMPLIED
+             generator-info-name CDATA #IMPLIED
+             generator-info-url  CDATA #IMPLIED >
+
+<!-- series - Information about the series element
+
+The series element is used as a hanging peg for movie and tvshow elements.
+Basically it can be used to indicate that a particular movie or tv show belongs
+to a certain series. eg an episode of Friends belongs to the series Friends.
+
+The attributes of the series element are for further information about the series
+to facilitate the user and provide them with extra information in the content guide
+-->
+<!ELEMENT series (display-name+, description*, series-category*) >
+<!ATTLIST series id CDATA #REQUIRED >
+
+<!-- A user-friendly name for the tv series. The lang attribute follows RFC 1766.
+-->
+<!ELEMENT display-name (#PCDATA)>
+<!ATTLIST display-name lang CDATA #IMPLIED>
+
+<!-- A description may accompany the series as to provide the user with 
+some extra information about it.
+
+As an example the description may contain information about the general theme of the
+series, when it was aired and/or critical acclaim.
+-->
+<!ELEMENT description (#PCDATA)>
+<!ATTLIST description lang CDATA #IMPLIED>
+
+<!-- If the series belongs to a general category/s it may be placed here
+
+For example a horror tv series may belong to the categories horror and action.
+-->
+<!ELEMENT series-category (#PCDATA)>
+<!ATTLIST series-category lang CDATA #IMPLIED>
+
+<!-- video - details of a single tvshow episode
+
+Based on the xmltv programme element but with a few sub elements ripped out that don't
+really apply to video on demand.
+
+Also the attributes have all be replaced by more relevant ones for VoD.
+
+-->
+<!ELEMENT video (title+, secondary-title*, desc*, credits?, date?,
+                     category*, language?, orig-language?, length?,
+                     icon*, url*, country*, episode-num*, video-properties?, audio?,
+                     new?, subtitles*, rating*, star-rating* )>
+<!ATTLIST video     type     	CDATA #REQUIRED
+                    series      CDATA #IMPLIED >
+
+<!-- Programme title, eg 'Friends'. -->
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title lang CDATA #IMPLIED>
+
+<!-- Secondary-title or episode title, eg 'The One With The Sonogram At The End'. -->
+<!ELEMENT secondary-title (#PCDATA)>
+<!ATTLIST secondary-title lang CDATA #IMPLIED>
+
+<!-- Description of the programme or episode.
+
+Unlike other elements, long bits of whitespace here are treated as
+equivalent to a single space and newlines are permitted, so you can
+break lines and write a pretty-looking paragraph if you wish.
+-->
+<!ELEMENT desc (#PCDATA)>
+<!ATTLIST desc lang CDATA #IMPLIED>
+
+<!-- Credits for the programme.
+
+People are listed in decreasing order of importance; so for example
+the starring actors appear first followed by the smaller parts.  As
+with other parts of this file format, not mentioning a particular
+actor (for example) does not imply that he _didn't_ star in the film -
+so normally you'd list only the few most important people.
+
+Adapter can be either somebody who adapted a work for television, or
+somebody who did the translation from another language.  Maybe these
+should be separate, but if so how would 'translator' fit in with the
+'language' element?
+-->
+<!ELEMENT credits (director*, actor*, writer*, adapter*, producer*,
+                   presenter*, commentator*, guest* )>
+<!ELEMENT director    (#PCDATA)>
+<!ELEMENT actor       (#PCDATA)>
+<!ELEMENT writer      (#PCDATA)>
+<!ELEMENT adapter     (#PCDATA)>
+<!ELEMENT producer    (#PCDATA)>
+<!ELEMENT presenter   (#PCDATA)>
+<!ELEMENT commentator (#PCDATA)>
+<!ELEMENT guest       (#PCDATA)>
+
+
+<!-- The date the programme or film was finished.  This will probably
+be the same as the copyright date.
+-->
+<!ELEMENT date (#PCDATA)>
+
+<!-- Type of programme, eg 'soap', 'comedy' or whatever the
+equivalents are in your language.  There's no predefined set of
+categories and it's okay for a programme to belong to several.
+-->
+<!ELEMENT category (#PCDATA)>
+<!ATTLIST category lang CDATA #IMPLIED>
+
+<!-- The language the programme will be broadcast in.  This does not
+include the language of any subtitles, but it is affected by dubbing
+into a different language.  For example, if a French film is dubbed
+into English, language=en and orig-language=fr.
+
+There are two ways to specify the language.  You can use the
+two-letter codes such as en or fr, or you can give a name such as
+'English' or 'Deutsch'.  In the latter case you might want to use the
+'lang' attribute, for example
+
+<language lang="fr">Allemand</language>
+-->
+<!ELEMENT language (#PCDATA)>
+<!ATTLIST language lang CDATA #IMPLIED>
+
+<!-- The original language, before dubbing.  The same remarks as for
+'language' apply.
+-->
+<!ELEMENT orig-language (#PCDATA)>
+<!ATTLIST orig-language lang CDATA #IMPLIED>
+
+<!-- The true length of the programme or runtime.
+-->
+<!ELEMENT length (#PCDATA)>
+<!ATTLIST length units (seconds | minutes | hours) #REQUIRED>
+
+<!-- An icon associated with the element that contains it.
+src: uri of image
+width, height: (optional) dimensions of image
+
+These dimensions are pixel dimensions for the time being, eventually
+this will change to be more like HTML's 'img'.
+-->
+<!ELEMENT icon EMPTY>
+<!ATTLIST icon src         CDATA #REQUIRED
+               width       CDATA #IMPLIED
+               height      CDATA #IMPLIED> 
+
+<!-- The value of the element that contains it.  This is for elements
+that can have both a textual 'value' and an icon.  At present there is
+no 'lang' attribute here because things like 'PG' are not translatable
+(although a document explaining what 'PG' actually means would be).
+It happens that 'value' is used only for this sort of thing.
+-->
+<!ELEMENT value (#PCDATA)>
+
+<!-- A country where the programme was made or one of the countries in
+a joint production.  You can give the name of a country, in which case
+you might want to specify the language in which this name is written,
+or you can give a two-letter uppercase country code, in which case the
+lang attribute should not be given.  For example,
+
+<country lang="en">Italy</country>
+<country>GB</country>
+-->
+<!ELEMENT country (#PCDATA)>
+<!ATTLIST country lang CDATA #IMPLIED>
+
+<!-- Episode number
+
+We use the xmltv_ns here but we have customized it a bit since I don't
+quiet agree with the xmltv way and want it to start from season 1 being 1
+and not 0 as xmltv does it. This it is easier to parse as not broadcaster 
+that I know of uses season 0 instead of season 1.
+
+ It is three numbers separated by dots,
+the first is the series or season, the second the episode number
+within that series, and the third the part number, if the programme is
+part of a two-parter.  All these numbers are indexed from one, and
+they can be given in the form 'X/Y' to show series X out of Y series
+made, or episode X out of Y episodes in this series, or part X of a
+Y-part episode.  If any of these aren't known they can be omitted.
+You can put spaces whereever you like to make things easier to read.
+
+Some examples will make things clearer.  The first episode of the
+second series is '2.1.0/2' .  If it were a two-part episode, then the
+first half would be '2.1.1/2' and the second half '2.1.2/2'.  If you
+know that an episode is from the first season, but you don't know
+which episode it is or whether it is part of a multiparter, you could
+give the episode-num as '0..'.  
+
+Not sure if the following still applies with edited system.
+Here the second and third numbers have been omitted.  
+If you know that this is the first part of a three-part
+episode, which is the last episode of the first series of thirteen,
+its number would be '0 . 12/13 . 0/3'.  The series number is just '0'
+because you don't know how many series there are in total - perhaps
+the show is still being made!
+-->
+<!ELEMENT episode-num (#PCDATA)>
+
+<!-- Video details: the subelements describe the picture quality as
+follows:
+
+present: whether this programme has a picture (no, in the
+case of radio stations broadcast on TV or 'Blue'), legal values are
+'yes' or 'no'.  Obviously if the value is 'no', the other elements are
+meaningless.
+
+colour: 'yes' for colour, 'no' for black-and-white.
+
+aspect: The horizontal:vertical aspect ratio, eg '4:3' or '16:9'.
+
+quality: information on the quality, eg 'HDTV', '800x600'.
+
+-->
+<!ELEMENT video-properties (present?, colour?, aspect?, quality?)>
+<!ELEMENT present (#PCDATA)>
+<!ELEMENT colour (#PCDATA)>
+<!ELEMENT aspect (#PCDATA)>
+<!ELEMENT quality (#PCDATA)>
+
+<!-- Audio details, similar to video details above.
+
+present: whether this programme has any sound at all, 'yes' or 'no'.
+
+stereo: Description of the stereo-ness of the sound.  Legal values
+are currently 'mono','stereo','dolby','dolby digital' and 'surround'; 
+others like 'quad' might be added later.
+-->
+<!ELEMENT audio (present?, stereo?)>
+<!ELEMENT stereo (#PCDATA)>
+
+<!-- New.  This is the first time the video has been listed.
+
+Note that this does not mean 'new season' or 'new episode' of an
+existing show.  You can express part of that using the episode-num
+stuff.
+-->
+<!ELEMENT new EMPTY>
+
+<!-- Subtitles.  These can be either 'teletext' (sent digitally, and
+displayed at the viewer's request), 'onscreen' (superimposed on the
+picture and impossible to get rid of), or 'deaf-signed' (in-vision 
+signing for users of sign language). You can have multiple subtitle
+streams to handle different languages.  Language for subtitles is
+specified in the same way as for programmes.
+-->
+<!ELEMENT subtitles (language?)>
+<!ATTLIST subtitles type (teletext | onscreen | deaf-signed) #IMPLIED>
+
+<!-- Rating.  Various bodies decide on classifications for films -
+usually a minimum age you must be to see it.  In principle the same
+could be done for ordinary TV programmes.  Because there are many
+systems for doing this, you can also specify the rating system used
+(which in practice is the same as the body which made the rating).
+-->
+<!ELEMENT rating (value, icon*)>
+<!ATTLIST rating system CDATA #IMPLIED>
+
+<!-- 'Star rating' - many listings guides award a programme a score as
+a quick guide to how good it is.  The value of this element should be
+'N / M', for example one star out of a possible five stars would be
+'1 / 5'.  Zero stars is also a possible score (and not the same as
+'unrated').  You should try to map whatever wacky system your listings
+source uses to a number of stars: so for example if they have thumbs
+up, thumbs sideways and thumbs down, you could map that to two, one or
+zero stars out of two.  If a programme is marked as recommended in a
+listings guide you could map this to '1 / 1'. Because there could be many 
+ways to provide star-ratings or recommendations for a programme, you can 
+specify multiple star-ratings. You can specify the star-rating system 
+used, or the provider of the recommendation, with the system attribute. 
+Whitespace between the numbers and slash is ignored.
+-->
+
+<!ELEMENT star-rating (value, icon*)>
+<!ATTLIST star-rating system CDATA #IMPLIED>
+<!-- (Why are things like 'stereo', which must be one of a small
+number of values, stored as the contents of elements rather than as
+attributes?  Because they are data rather than metadata.  Attributes
+are used for things like the language or encoding of element contents,
+or for programme transmission details.) -->

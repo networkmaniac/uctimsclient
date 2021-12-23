@@ -1,0 +1,51 @@
+This client is designed to be used with the Fraunhofer FOKUS Open IMS Core.
+
+Authors: David Waiting <david at crg.ee.uct.ac.za> and Richard Good <richard at crg.ee.uct.ac.za>
+
+(c) 2008 University of Cape Town, South Africa
+
+See: http://uctimsclient.berlios.de for installation and documentation
+
+2012 - old libvlc functions rewritten to use newer version of libvlc library (1.1.12) by Roman Bronis <roman.bronis@gmail.com> Slovak University of Technology - FIIT
+For more information see CHANGES.
+
+
+Troubleshooting:
+---------------
+
+Libraries:
+
+All of the required libraries can be found in the standard Ubuntu Feisty (7.04) repositories.
+
+If you install the libraries manually the client may not find them and this error may occur:
+
+	error while loading shared libraries: libortp.so.5
+
+Try typing
+	
+	export LD_LIBRARY_PATH="/usr/local/lib"
+
+----
+
+Registering:
+
+There are some bugs with the reg event (either in the core or the client).
+
+If you get the warning:
+
+	Warning: Subscription to reg event failed
+
+Try deregistering and register again.
+
+
+---
+
+183 Session Progress
+
+If you don't want 183 session progress or UPDATE messages set your QoS to none.
+
+If you want to change the way the client responds to messages, dig around in ims_exosip_event_handler.c
+
+---
+
+For any other queries please post to the mailing list.

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cr:ruleset xmlns="urn:ietf:params:xml:ns:pres-rules" xmlns:pr="urn:ietf:params:xml:ns:pres-rules" xmlns:cr="urn:ietf:params:xml:ns:common-policy">
+
+
+
+<cr:rule id="pres_whitelist"><cr:conditions><cr:identity><cr:one id="sip:alice@open-ims.test"/><cr:one id="sip:bob@open-ims.test"/></cr:identity></cr:conditions><cr:actions><sub-handling>allow</sub-handling></cr:actions><cr:transformations/></cr:rule></cr:ruleset>

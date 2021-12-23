@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<!-- This is an example of an xml electronic programme guide for tv broadcasts. It is based on the current xmltv stuff - http://xmltv.org/wiki/
+     which is due for a major overhaul so this may be out of date and need to be changed since they say the new release will not be backwards
+     compatible. Robert Marston 2008 -->
+
+
+<tv>
+ <channel id="channel1">
+  <display-name lang="en">Channel 1</display-name>
+ </channel>
+ <channel id="channel2">
+  <display-name lang="en">Channel 2</display-name>
+ </channel>
+ <channel id="channel3">
+  <display-name lang="en">Channel 3</display-name>
+ </channel>
+
+ <programme channel="channel1" start="200800701000500 +0100">
+  <title lang="en">Show 1 on Channel 1</title>
+  <sub-title lang="en">Sub-title for Show 1</sub-title>
+  <desc lang="en">Information for Show 1 on Channel 1.</desc>
+  <category lang="en">Drama</category>
+ </programme>
+
+ <programme channel="channel1" start="200800701000700 +0100">
+  <title lang="en">Show 2 on Channel 1</title>
+  <sub-title lang="en">Sub-title for Show 2</sub-title>
+  <desc lang="en">Information for Show 2 on Channel 1.</desc>
+  <category lang="en">Sitcom</category>
+ </programme>
+
+ <programme channel="channel1" start="200800701000900 +0100">
+  <title lang="en">Show 3 on Channel 1</title>
+  <sub-title lang="en">Sub-title for Show 3</sub-title>
+  <desc lang="en">Information for Show 3 on Channel 1.</desc>
+  <category lang="en">Variety</category>
+ </programme>
+
+ <programme channel="channel2" start="200800701000500 +0100">
+  <title lang="en">Show 1 on Channel 2</title>
+  <sub-title lang="en">Sub-title for Show 1</sub-title>
+  <desc lang="en">Information for Show 1 on Channel 2.</desc>
+  <category lang="en">Action</category>
+  <category lang="en">Comedy</category> 
+ </programme>
+
+ <programme channel="channel2" start="200800701000600 +0100">
+  <title lang="en">Show 2 on Channel 2</title>
+  <sub-title lang="en">Sub-title for Show 2</sub-title>
+  <category lang="en">Action</category>
+ </programme>
+
+ <programme channel="channel2" start="200800701000800 +0100">
+  <title lang="en">Show 3 on Channel 2</title>
+  <sub-title lang="en">Sub-title for Show 3</sub-title>
+  <desc lang="en">Information for Show 3 on Channel 2.</desc>
+  <category lang="en">Variety</category>
+ </programme>
+
+ <programme channel="channel3" start="200800701000100 +0100">
+  <title lang="en">Show 1 on Channel 3</title>
+  <sub-title lang="en">Sub-title for Show 1</sub-title>
+  <desc lang="en">Information for Show 1 on Channel 3.</desc>
+  <category lang="en">Comedy</category>
+ </programme>
+
+ <programme channel="channel3" start="200800701000300 +0100">
+  <title lang="en">Show 2 on Channel 3</title>
+  <sub-title lang="en">Sub-title for Show 2</sub-title>
+  <desc lang="en">Information for Show 2 on Channel 3.</desc>
+  <category lang="en">News</category>
+ </programme>
+
+ <programme channel="channel3" start="200800701000600 +0100">
+  <title lang="en">Show 3 on Channel 3</title>
+  <sub-title lang="en">Sub-title for Show 3</sub-title>
+  <desc lang="en">Information for Show 3 on Channel 3.</desc>
+  <category lang="en">Adventure</category>
+ </programme>
+
+</tv>

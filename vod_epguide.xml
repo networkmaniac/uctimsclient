@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<!DOCTYPE vod SYSTEM "xmlvod.dtd">
+<!-- This is an example xml file for what video on demand electronic programme guide might contain. You may wish to add less information or more
+     There doesn't seem to be a standard way for how to construct an epguide (or I have yet to find one) so I came up with my own and I
+     based most of it on the xmltv stuff and from the dvd classification system. Robert Marston 2008 -->
+
+<vod>
+<!-- Having a series element that contains information about a particular series I think can be very usefull in adding extra information for the
+     user when browsing the content guide -->
+<series id="starwars">
+    <display-name>Star Wars</display-name>
+    <series-category>Science Fiction</series-category>
+</series>
+<series id="friends">
+    <display-name>Friends</display-name>
+</series>
+<series id="batman">
+    <display-name>Batman</display-name>
+</series>
+
+<!-- A typical video element and its sub-elements might look something like this. Of course you could add more here eg. Avg review score, but you 
+     can also remove things such as the credits and so on but its important I think to have minimum of title, desc, length, category and rating -->
+<video type="movie" series="starwars">
+    <title lang="en">Star Wars</title>
+    <secondary-title lang="en">Episode I: The Phantom Menace</secondary-title>
+    <desc lang="en">Jedi Master Qui-Gon Jinn and his young apprentice Obi-Wan Kenobi aid the Queen of Naboo in an attempt to thwart the invasion of her home planet; meanwhile, they come across Anakin Skywalker, a young boy with strong Jedi powers.</desc>
+    <credits>
+        <director>George Lucas</director>
+        <actor>Liam Neeson</actor>
+	<actor>Ewan McGregor</actor>
+	<actor>Natalie Portman</actor>
+        <actor>Hayden Christensen</actor>
+    </credits>
+    <category>Science Fiction</category>
+    <length units="minutes">133</length>
+    <episode-num>0.1.0/6</episode-num>
+    <rating system="MPAA">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="movie" series="starwars">
+    <title lang="en">Star Wars</title>
+    <secondary-title lang="en">Episode II: Attack of the Clones</secondary-title>
+    <desc lang="en">When political seperatists attempt to assasinate Senator Amidala, Obi-Wan Kenobi tries to find out why while Anakin acts as protector to Amidala and begins a forbidden affair with her.</desc>
+    <credits>
+        <director>George Lucas</director>
+        <actor>Liam Neeson</actor>
+	<actor>Ewan McGregor</actor>
+	<actor>Natalie Portman</actor>
+        <actor>Hayden Christensen</actor>
+    </credits>
+    <category>Science Fiction</category>
+    <length units="minutes">142</length>
+    <episode-num>0.2.0/6</episode-num>
+    <rating system="MPAA">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="movie" series="starwars">
+    <title lang="en">Star Wars</title>
+    <secondary-title lang="en">Episode III: Revenge of the Sith</secondary-title>
+    <desc lang="en">Torn between loyalty to his mentor Obi-Wan Kenobi and the seductive powers of the Sith Anakin Skywalker ultimately turns his back on the Jedi thus completing his journey to the dark side and his transformation into Darth Vader. Experience the breathtaking scope of the final chapter in spectacular clarity and relive all the epic battles including the final climactic lightsaber duel between Anakin and Obi-Wan.</desc>
+    <credits>
+        <director>George Lucas</director>
+        <actor>Liam Neeson</actor>
+	<actor>Ewan McGregor</actor>
+	<actor>Natalie Portman</actor>
+        <actor>Hayden Christensen</actor>
+    </credits>
+    <category>Science Fiction</category>
+    <length units="minutes">140</length>
+    <episode-num>0.3.0/6</episode-num>
+    <rating system="MPAA">
+        <value>PG-13</value>
+    </rating>
+</video>
+
+<video type="movie">
+    <title lang="en">21</title>
+    <desc lang="en">Inspired by the true story of MIT students who mastered the art of card counting and took Vegas casinos for millions in winnings. Looking for a way to pay for tuition, Ben Campbell (Jim Sturgess) finds himself quietly recruited by MIT's most gifted students in a daring plot to break Vegas. With the help of a brilliant statistics professor (Kevin Spacey) and armed with fake IDs, intelligence and a complicated system of counting cards, Ben and his friends succeed in breaking the impenetrable casinos. Now, his challenge is keeping the numbers straight and staying one step ahead of the casinos before it all spirals out of control.</desc>
+    <credits>
+        <director>Robert Luketic</director>
+        <actor>Kieu Chinh</actor>
+	<actor>Laurence Fishburne</actor>
+	<actor>Jack Gilpin</actor>
+        <actor>Jack McGee</actor>
+        <actor>Kevin Spacey</actor>
+    </credits>
+    <category>Drama</category>
+    <length units="minutes">123</length>
+    <rating system="MPAA">
+        <value>PG-13</value>
+    </rating>
+</video>
+
+<video type="movie" series="batman">
+    <title lang="en">Batman Begins</title>
+    <desc lang="en">Christopher Nolan's ("Memento") reinvention of the Batman saga follows Bruce Wayne (Christian Bale), enraged by the murder of his parents, to Tibet, where he trains with a ninja clan led by the mysterious Ra's Al Ghul. Returning to Gotham, Wayne takes on the mantle of the Dark Knight and, with the help of stalwart butler Alfred (Michael Caine) and honest cop Sgt. Jim Gordon (Gary Oldman), wages war on the city's superstitious, cowardly lot of criminals.</desc>
+    <credits>
+        <director>Christopher Nolan</director>
+        <actor>Christian Bale</actor>
+	<actor>Morgan Freeman</actor>
+	<actor>Liam Neeson</actor>
+        <actor>Katie Holmes</actor>
+        <actor>Gary Oldman</actor>
+	<actor>Cillian Murphy</actor>
+    </credits>
+    <category>Action</category>
+    <category>Fantasy</category>
+    <length units="minutes">140</length>
+    <episode-num>0.7.0/0</episode-num>
+    <rating system="MPAA">
+        <value>PG-13</value>
+    </rating>
+</video>
+
+<!-- This is what a typical television show might look like. Again you could add and remove what you want but I think its important to have the title, desc, length, category and rating like with the video. Also I think it is important to include season and episode number as attributes for the series -->
+<video type="tvshow" series="friends">
+    <title lang="en">Friends</title>
+    <secondary-title lang="en">The One Where Monica Gets a Roommate</secondary-title>
+    <desc lang="en">Rachel leaves Barry at the alter and moves in with Monica. Monica goes on a date with Paul the wine guy, who turns out to be less than sincere. Ross is depressed about his failed marriage. Joey compares women to ice cream. Everyone watches Spanish soaps. Ross reveals his high school crush on Rachel.</desc>
+    <credits>
+        <director>James Burrows</director>
+        <actor>Jennifer Aniston</actor>
+	<actor>Courteney Cox</actor>
+	<actor>Lisa Kudrow</actor>
+        <actor>Matt LeBlanc</actor>
+	<actor>Matthew Perry</actor>
+        <actor>David Schwimmer</actor>
+	<writer>Marta Kauffman</writer>
+	<writer>David Crane</writer>
+    </credits>
+    <category>Sitcom</category>
+    <length units="minutes">22</length>
+    <episode-num>1.1.0/10</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="tvshow" series="friends">
+    <title lang="en">Friends</title>
+    <secondary-title lang="en">The One With The Sonogram At The End</secondary-title>
+    <desc lang="en">Ross finds out his ex-wife (Carol) is pregnant, and he has to attend the sonogram along with Carol's lesbian life-partner, Susan. Ugly Naked Guy gets a thigh-master. Ross and Monica's parents come for dinner, which stresses Monica out. Ross and Rachel console each other. Rachel returns the ring to Barry, who is much less upset about the break-up than expected.</desc>
+    <credits>
+        <director>James Burrows</director>
+        <actor>Jennifer Aniston</actor>
+	<actor>Courteney Cox</actor>
+	<actor>Lisa Kudrow</actor>
+        <actor>Matt LeBlanc</actor>
+	<actor>Matthew Perry</actor>
+        <actor>David Schwimmer</actor>
+	<writer>Marta Kauffman</writer>
+	<writer>David Crane</writer>
+    </credits>
+    <category>Sitcom</category>
+    <length units="minutes">22</length>
+    <episode-num>1.2.0/10</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="tvshow" series="friends">
+    <title lang="en">Friends</title>
+    <secondary-title lang="en">The One With The Thumb</secondary-title>
+    <desc lang="en">Ross discovers the fate of his childhood pet, Chichi. Chandler starts smoking again; when the group complains, he diverts their attention to their own faults. Phoebe gets money she doesn't want; she complains and gets more; she gives it away and gets a can of soda in return... which contains a thumb. The beverage company gives her $7000. Monica's new boyfriend (Alan) is a hit with her friends, but Monica's not too sure.</desc>
+    <credits>
+        <director>James Burrows</director>
+        <actor>Jennifer Aniston</actor>
+	<actor>Courteney Cox</actor>
+	<actor>Lisa Kudrow</actor>
+        <actor>Matt LeBlanc</actor>
+	<actor>Matthew Perry</actor>
+        <actor>David Schwimmer</actor>
+	<writer>Marta Kauffman</writer>
+	<writer>David Crane</writer>
+    </credits>
+    <category>Sitcom</category>
+    <length units="minutes">22</length>
+    <episode-num>1.3.0/10</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="tvshow" series="friends">
+    <title lang="en">Friends</title>
+    <secondary-title lang="en">The One With Ross's New Girlfriend</secondary-title>
+    <desc lang="en">Rachel, ready to reveal her feelings to Ross, meets him at the airport; her plans fall apart, however, when she finds out about his new girlfriend, Julie. Chandler, already feeling guilty about revealing Ross's feelings to Rachel, now feels worse that he encouraged Ross to forget about her. The gang watches Sumo Wrestling. Phoebe gives Joey and Chandler haircuts; Monica wants one, too. Phoebe is reluctant because of Monica's picky nature, but finally gives in. Monica wants a cut like Demi Moore; unfortunately Phoebe confuses "Demi" with "Dudley". Chandler needs a suit made, and Joey refers him to the family tailor; while getting measured for pants, Chandler gets a little more attention than he bargained for. Ross sickens everyone (especially Rachel) with his constant gushing for Julie. In Rachel's depression, she sleeps with Paolo again.</desc>
+    <credits>
+        <director>James Burrows</director>
+        <actor>Jennifer Aniston</actor>
+	<actor>Courteney Cox</actor>
+	<actor>Lisa Kudrow</actor>
+        <actor>Matt LeBlanc</actor>
+	<actor>Matthew Perry</actor>
+        <actor>David Schwimmer</actor>
+	<writer>Marta Kauffman</writer>
+	<writer>David Crane</writer>
+    </credits>
+    <category>Sitcom</category>
+    <length units="minutes">22</length>
+    <episode-num>2.1.0/10</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="tvshow" series="friends">
+    <title lang="en">Friends</title>
+    <secondary-title lang="en">The One With The Breast Milk</secondary-title>
+    <desc lang="en">Carol breastfeeds Ben, causing Joey and Chandler discomfort. However, even stronger reactions occur when Ross is taking care of Ben and Phoebe checks the temperature of the bottled breast milk by tasting it. Julie invites Monica to go shopping; Rachel finds out and feels betrayed. Joey's status as the Bijan Cologne Man is threatened when his department store hires someone to be the Hombre Man. Rachel tries to be nicer to Julie, but is less than sincere.</desc>
+    <credits>
+        <director>James Burrows</director>
+        <actor>Jennifer Aniston</actor>
+	<actor>Courteney Cox</actor>
+	<actor>Lisa Kudrow</actor>
+        <actor>Matt LeBlanc</actor>
+	<actor>Matthew Perry</actor>
+        <actor>David Schwimmer</actor>
+	<writer>Marta Kauffman</writer>
+	<writer>David Crane</writer>
+    </credits>
+    <category>Sitcom</category>
+    <length units="minutes">22</length>
+    <episode-num>2.2.0/10</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="tvshow" series="batman">
+    <title lang="en">The Batman</title>
+    <secondary-title lang="en">The Bat in the Belfry</secondary-title>
+    <desc lang="en">After stopping a heist by Rupert Thorne, Batman returns to the Batcave to learn that all criminals in Arkham Asylum have mysteriously been released. Batman finds out that it's a crazed clown named Joker who released them, and he plans to make a blimp full of laughing gas to explode over Gotham so that every citizen turns into a lunatic. It's up to Batman to stop him.</desc>
+    <credits>
+        <director>Seung Eun-Kim</director>
+        <actor>Rino Romano</actor>
+	<actor>Mitch Pileggi</actor>
+	<actor>Ming-Na</actor>
+	<writer>Duane Capizzi</writer>
+    </credits>
+    <category>Animation</category>
+    <length units="minutes">30</length>
+    <episode-num>1.1.0/5</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+<video type="tvshow" series="batman">
+    <title lang="en">The Batman</title>
+    <secondary-title lang="en">The Bat in the Belfry</secondary-title>
+    <desc lang="en">Three mob bosses want revenge on Batman because he constantly took down their operations. They call in a very mysterious man named Bane to finish him off, once and for all. Bane may seem like a normal criminal, but he has a secret, a secret so powerful that it could destroy all of Gotham. After their first encounter, Bane easily takes down Batman, hurting him badly. Now, Batman must think of a new way to stop this menace.</desc>
+    <credits>
+        <director>Seung Eun-Kim</director>	
+        <actor>Rino Romano</actor>
+	<actor>Mitch Pileggi</actor>
+	<actor>Ming-Na</actor>
+	<writer>Duane Capizzi</writer>
+    </credits>
+    <category>Animation</category>
+    <length units="minutes">30</length>
+    <episode-num>1.2.0/5</episode-num>
+    <rating system="USA TV">
+        <value>PG</value>
+    </rating>
+</video>
+
+</vod>

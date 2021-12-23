@@ -1,0 +1,21 @@
+2012-04-04  Roman Bronis  <roman.bronis@gmail.com>  FIIT STU
+
+    * src/rtsp.c (libvlc): old libvlc functions rewritten
+    to use newer version of libvlc library (1.1.12)
+
+    * Makefile (gcc options): Makefile changed to reflect
+	correct order of gcc arguments
+
+    * Makefile (options): added debian and ubuntu
+	options for easier installation of packages
+
+	* src/interface.c (credits): added my and Andrej
+	Kozemcak's contact informations to Credits window.
+
+	* imsua.glade, src/callbacks.h, src/interface.c
+	(version): changed version number from 1.0.13 to 1.0.14
+
+2012-04-04  Andrej Kozemcak  <akozemcak@gmail.com>  FIIT STU
+
+	* Makefile (options): added install option for
+	easier installation of uctimsclient
