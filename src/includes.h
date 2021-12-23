@@ -26,7 +26,7 @@
 
 #include <gst/gst.h>
 #include <gdk/gdkx.h>
-#include <gst/interfaces/xoverlay.h>
+#include <gst/video/videooverlay.h>
 
 #include <time.h>
 
@@ -40,7 +40,6 @@
 #include <vlc/vlc.h>
 #include <vlc/deprecated.h>
 #include <vlc/libvlc.h>
-#include <vlc/libvlc_structures.h>
 
 typedef struct
 {

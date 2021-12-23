@@ -6,10 +6,10 @@ PREFIX=/usr/local
 BINDIR=$(PREFIX)/bin
 
 CC = gcc
-LIBS = -leXosip2 -lxml2 -lcurl -lgstinterfaces-0.10 -lvlc -losipparser2 -lgstreamer-0.10
+LIBS = -leXosip2 -lxml2 -lcurl -lvlc -losipparser2 -lgstreamer-1.0 -lgstvideo-1.0
 INCLUDES = -I/usr/include/libxml2 -I/usr/lib/vlc/include/
 GTK_LIB_FLAGS = `pkg-config --cflags --libs gtk+-2.0`
-GTK_INC_FLAGS = `pkg-config --cflags gtk+-2.0 gstreamer-0.10`
+GTK_INC_FLAGS = `pkg-config --cflags gtk+-2.0 gstreamer-1.0`
 
 ODIR=obj
 
@@ -43,12 +43,6 @@ $(ODIR)/%.o: $(SRC_DIR)/%.c
 install: $(PROG)
 	mkdir -p $(BINDIR)
 	install $(PROG) $(BINDIR)/$(PROG)
-
-debian:
-	aptitude install libexosip2-dev libcurl4-dev libxml2-dev libvlc-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libgtk2.0-dev
-
-ubuntu:
-	apt-get install libexosip2-dev libcurl4-gnutls-dev libxml2-dev libvlc-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libgtk2.0-dev
 
 clean: 
 	rm -f $(PROG) $(ODIR)/*.o *~ $(SRC_DIR)/*~

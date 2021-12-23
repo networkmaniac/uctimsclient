@@ -56,11 +56,11 @@ static gboolean expose_cb(GtkWidget * widget, GdkEventExpose * event, gpointer d
 	/* Tell the xvimagesink/ximagesink the x-window-id of the screen
 	 * widget in which the video is shown. After this the video
 	 * is shown in the correct widget */
-	// gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data), GDK_WINDOW_XWINDOW(widget->window));
+	// gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(data), GDK_WINDOW_XWINDOW(widget->window));
 
 	// printf("window exposed !\n");
 
-	gst_x_overlay_expose (GST_X_OVERLAY(data));
+	gst_video_overlay_expose (GST_VIDEO_OVERLAY(data));
 	return FALSE;
 
 }
@@ -116,7 +116,7 @@ static void new_pad (GstElement *element, GstPad *pad, gpointer data)
 	/* Simple function that links the new pad to the sink of the element
 	   passed in */
 	GstPad *sinkpad;
-	sinkpad = gst_element_get_pad (data, "sink");
+	sinkpad = gst_element_get_static_pad (data, "sink");
 	gst_pad_link (pad, sinkpad);
 	gst_object_unref (sinkpad);
 }
@@ -237,7 +237,7 @@ int initialiseBackgroundVideoPipeline()
 
 	/* As soon as screen is exposed, window ID will be advised to the sink */
 	// g_signal_connect(local_cam_widget, "expose-event", G_CALLBACK(expose_cb), screen_sink);
-	gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(local_cam_widget->window));
+	gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(local_cam_widget->window));
 
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 }
@@ -421,7 +421,7 @@ int initialiseVideoTxPipeline(Call *ca)
 
 	/* As soon as screen is exposed, window ID will be advised to the sink */
 	// g_signal_connect(local_cam_widget, "expose-event", G_CALLBACK(expose_cb), screen_sink);
-	gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(local_cam_widget->window));
+	gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(local_cam_widget->window));
 
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
@@ -493,7 +493,7 @@ int initialiseVideoRxPipeline(Call *ca)
 
 	/* As soon as screen is exposed, window ID will be advised to the sink */
 	// g_signal_connect(remote_cam_widget, "expose-event", G_CALLBACK(expose_cb), screen_sink);
-	gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(remote_cam_widget->window));
+	gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(remote_cam_widget->window));
 
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
@@ -733,8 +733,8 @@ int initialiseIptvVideoPipeline(Call *ca)
 			g_critical("Can't link elements for the iptv pipeline.\n");
 			return FALSE;
 		}
-		caps = gst_caps_new_simple("video/x-raw-yuv",
-			"format", GST_TYPE_FOURCC, GST_STR_FOURCC("YV12"),
+		caps = gst_caps_new_simple("video/x-raw",
+			"format", G_TYPE_STRING, "YV12",
 			NULL);
 
 		if(!gst_element_link_filtered(csp_filter, screen_sink, caps))
@@ -763,10 +763,10 @@ int initialiseIptvVideoPipeline(Call *ca)
 	gtk_window_resize(GTK_WINDOW(videoWin), 640, 480);
 	gtk_widget_show_all(videoWin);
 
-	gst_x_overlay_prepare_xwindow_id(GST_X_OVERLAY(screen_sink));
+	gst_video_overlay_prepare_window_handle(GST_VIDEO_OVERLAY(screen_sink));
 
 	/* Tell the x overlay in which window we want it to appear */
-	gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(videoWin->window));
+	gst_video_overlay_set_window_handle(GST_VIDEO_OVERLAY(screen_sink), GDK_WINDOW_XWINDOW(videoWin->window));
 
 	gst_element_set_state(pipeline, GST_STATE_PLAYING);
 
